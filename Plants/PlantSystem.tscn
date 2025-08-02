@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1abk3ao4oqmp"]
+
+[ext_resource type="Script" uid="uid://cp8nccukdi8r1" path="res://Plants/plant_system.gd" id="1_5lx77"]
+[ext_resource type="Texture2D" uid="uid://dy4iceny3uomh" path="res://Plants/Vine.png" id="2_quawi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1g54f"]
+size = Vector2(16, 16)
+
+[node name="PlantSystem" type="Node2D" groups=["Plants"]]
+script = ExtResource("1_5lx77")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_quawi")
+hframes = 3
+frame = 2
+
+[node name="Area2D" type="Area2D" parent="." groups=["Plants"]]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_1g54f")
+
+[node name="GrowthTimer" type="Timer" parent="."]
