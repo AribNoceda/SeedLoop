@@ -1,16 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1abk3ao4oqmp"]
+[gd_scene load_steps=6 format=3 uid="uid://c1abk3ao4oqmp"]
 
 [ext_resource type="Script" uid="uid://cp8nccukdi8r1" path="res://Plants/plant_system.gd" id="1_5lx77"]
-[ext_resource type="Texture2D" uid="uid://dy4iceny3uomh" path="res://Plants/Vine.png" id="2_quawi"]
+[ext_resource type="Texture2D" uid="uid://c1m0fluc6tb65" path="res://PlantPreview/Yes.png" id="2_jode8"]
+[ext_resource type="Texture2D" uid="uid://dfe0t7wb6hifx" path="res://PlantPreview/No.png" id="3_y0hya"]
+[ext_resource type="Texture2D" uid="uid://cnv8gwrr4raqc" path="res://PlantPreview/Water.png" id="4_nrxe7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1g54f"]
 size = Vector2(16, 16)
 
 [node name="PlantSystem" type="Node2D" groups=["Plants"]]
 script = ExtResource("1_5lx77")
+stage_textures = Array[Texture2D]([ExtResource("2_jode8"), ExtResource("3_y0hya"), ExtResource("4_nrxe7")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_quawi")
 hframes = 3
 frame = 2
 
