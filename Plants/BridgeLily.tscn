@@ -1,3 +1,36 @@
-[gd_scene format=3 uid="uid://yaa8avj2285x"]
+[gd_scene load_steps=8 format=3 uid="uid://yaa8avj2285x"]
 
-[node name="BridgeLily" type="Node2D"]
+[ext_resource type="Script" uid="uid://6grks3uq30it" path="res://Plants/bridge_lily.gd" id="1_lx6ja"]
+[ext_resource type="Texture2D" uid="uid://cdtxadcsxs4vn" path="res://Plants/LilyBridge1.png" id="2_3tnon"]
+[ext_resource type="Texture2D" uid="uid://d4fx30klcg5x7" path="res://Plants/LilyBridge2.png" id="3_btr7c"]
+[ext_resource type="Texture2D" uid="uid://bpuhelnw554lx" path="res://Plants/LilyBridge3.png" id="4_nktx4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtnly"]
+size = Vector2(16, 16)
+
+[sub_resource type="Gradient" id="Gradient_n72v0"]
+offsets = PackedFloat32Array(0, 0.820513)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s3bfy"]
+gradient = SubResource("Gradient_n72v0")
+fill = 1
+fill_from = Vector2(0.484848, 0.463636)
+
+[node name="BridgeLily" type="Node2D" groups=["Plants"]]
+script = ExtResource("1_lx6ja")
+stage_textures = Array[Texture2D]([ExtResource("2_3tnon"), ExtResource("3_btr7c"), ExtResource("4_nktx4")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="." groups=["Plants"]]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_dtnly")
+
+[node name="GrowthTimer" type="Timer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+texture = SubResource("GradientTexture2D_s3bfy")

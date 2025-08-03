@@ -1,3 +1,36 @@
-[gd_scene format=3 uid="uid://dkqs7oa80oolb"]
+[gd_scene load_steps=8 format=3 uid="uid://dkqs7oa80oolb"]
 
-[node name="VineClimber" type="Node2D"]
+[ext_resource type="Script" uid="uid://dorsbrtos5oxk" path="res://Plants/vine_climber.gd" id="1_2svc3"]
+[ext_resource type="Texture2D" uid="uid://b7k4y3usqv0ir" path="res://Plants/VineClimber1.png" id="2_yop2d"]
+[ext_resource type="Texture2D" uid="uid://cg3rwwd8xiy14" path="res://Plants/VineClimber2.png" id="3_dwukd"]
+[ext_resource type="Texture2D" uid="uid://cj7hy4sjaa4lt" path="res://Plants/VineClimber3.png" id="4_6wg6t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2svc3"]
+size = Vector2(16, 16)
+
+[sub_resource type="Gradient" id="Gradient_se8qk"]
+offsets = PackedFloat32Array(0, 0.820513)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p3bl2"]
+gradient = SubResource("Gradient_se8qk")
+fill = 1
+fill_from = Vector2(0.484848, 0.463636)
+
+[node name="VineClimber" type="Node2D" groups=["Plants"]]
+script = ExtResource("1_2svc3")
+stage_textures = Array[Texture2D]([ExtResource("2_yop2d"), ExtResource("3_dwukd"), ExtResource("4_6wg6t")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="." groups=["Plants"]]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_2svc3")
+
+[node name="GrowthTimer" type="Timer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+texture = SubResource("GradientTexture2D_p3bl2")

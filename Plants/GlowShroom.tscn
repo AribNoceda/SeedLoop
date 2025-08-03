@@ -1,3 +1,36 @@
-[gd_scene format=3 uid="uid://cik0ssb6rq0ca"]
+[gd_scene load_steps=8 format=3 uid="uid://cik0ssb6rq0ca"]
 
-[node name="GlowShroom" type="Node2D"]
+[ext_resource type="Script" uid="uid://c03itwaycsy0m" path="res://Plants/glow_shroom.gd" id="1_4spga"]
+[ext_resource type="Texture2D" uid="uid://cvd2uqjcx2bgu" path="res://Plants/glowshroom1.png" id="2_je18r"]
+[ext_resource type="Texture2D" uid="uid://qoox5fcla8ol" path="res://Plants/glowshroom2.png" id="3_ht1gn"]
+[ext_resource type="Texture2D" uid="uid://b3iqjsnwwh636" path="res://Plants/glowshroom3.png" id="4_h7o7p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gs110"]
+size = Vector2(16, 16)
+
+[sub_resource type="Gradient" id="Gradient_je18r"]
+offsets = PackedFloat32Array(0, 0.820513)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2h68u"]
+gradient = SubResource("Gradient_je18r")
+fill = 1
+fill_from = Vector2(0.484848, 0.463636)
+
+[node name="GlowShroom" type="Node2D" groups=["Plants"]]
+script = ExtResource("1_4spga")
+stage_textures = Array[Texture2D]([ExtResource("2_je18r"), ExtResource("3_ht1gn"), ExtResource("4_h7o7p")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="." groups=["Plants"]]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_gs110")
+
+[node name="GrowthTimer" type="Timer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+texture = SubResource("GradientTexture2D_2h68u")

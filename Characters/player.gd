@@ -14,6 +14,7 @@ extends CharacterBody2D
 var is_watering := false
 var last_direction : Vector2
 
+
 func _ready():
 	update_animation(start_direction)
 	walk_sprite.visible = true
@@ -44,6 +45,11 @@ func _physics_process(_delta):
 			start_watering()
 			print(water_ray.get_collider())
 			print("Ray target:", water_ray.target_position)
+	if water_ray.is_colliding() and Input.is_action_just_pressed("interact"):
+		var target = water_ray.get_collider()
+		print("Hit node:", target.name, "Type:", target.get_class())
+		print("Has water():", target.has_method("water"))
+
 
 		# move character
 	move_and_slide()
@@ -73,6 +79,7 @@ func start_watering():
 	print("Hit object:", target)
 	print("Is in 'Plants':", target.is_in_group("Plants"))
 	print("Has 'water' method:", target.has_method("water"))
+	var plant = target.get_parent()
 
 	
 	
@@ -95,5 +102,5 @@ func start_watering():
 	watering_sprite.visible = false
 	
 	
-	if target.has_method("water"):
-		target.water()
+	if plant.has_method("water") and plant.is_in_group("Plants"):
+		plant.water()

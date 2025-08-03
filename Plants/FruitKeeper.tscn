@@ -1,3 +1,36 @@
-[gd_scene format=3 uid="uid://unmocppxh2r6"]
+[gd_scene load_steps=8 format=3 uid="uid://unmocppxh2r6"]
 
-[node name="FruitKeeper" type="Node2D"]
+[ext_resource type="Script" uid="uid://b812ht7ge84ha" path="res://Plants/fruit_keeper.gd" id="1_270xc"]
+[ext_resource type="Texture2D" uid="uid://rq1umny0y8ll" path="res://Plants/FruitKeeper1.png" id="2_xpdxn"]
+[ext_resource type="Texture2D" uid="uid://emynpd256fk8" path="res://Plants/FruitKeeper2.png" id="3_5uexj"]
+[ext_resource type="Texture2D" uid="uid://dmkoa027ekv4" path="res://Plants/FruitKeeper3.png" id="4_u4at3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o7gtb"]
+size = Vector2(16, 16)
+
+[sub_resource type="Gradient" id="Gradient_je18r"]
+offsets = PackedFloat32Array(0, 0.820513)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v4asp"]
+gradient = SubResource("Gradient_je18r")
+fill = 1
+fill_from = Vector2(0.484848, 0.463636)
+
+[node name="FruitKeeper" type="Node2D" groups=["Plants"]]
+script = ExtResource("1_270xc")
+stage_textures = Array[Texture2D]([ExtResource("2_xpdxn"), ExtResource("3_5uexj"), ExtResource("4_u4at3")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="." groups=["Plants"]]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_o7gtb")
+
+[node name="GrowthTimer" type="Timer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+texture = SubResource("GradientTexture2D_v4asp")
